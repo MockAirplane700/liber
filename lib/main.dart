@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:liber/custom_objects/interesting_website.dart';
-import 'package:liber/logic/websites.dart';
 import 'package:liber/pages/home.dart';
 import 'package:flutter/widgets.dart';
 
 void main() {
-  Websites websites = Websites();
-  websites.implementDatabase();
-  websites.insertWebsite(InterestingWebsite(
-      networkImage: 'https://cdn.freeriderhd.com/free_rider_hd/sprites/frhd_1200x1200_v2.png', name: 'Free rider ',
-      description: 'lorem ipsum', datePublished: '26 March 2013',
-      source: 'https://www.tiktok.com/@setupspawn/video/7125453778920279342?is_copy_url=1&is_from_webapp=v1',
-      websiteUrl: 'https://www.freeriderhd.com/create',
-      id: 3
-  ));
+  // Websites websites = Websites();
+  // websites.implementDatabase();
+  // websites.insertWebsite(InterestingWebsite(
+  //     networkImage: 'https://cdn.freeriderhd.com/free_rider_hd/sprites/frhd_1200x1200_v2.png', name: 'Free rider ',
+  //     description: 'lorem ipsum', datePublished: '26 March 2013',
+  //     source: 'https://www.tiktok.com/@setupspawn/video/7125453778920279342?is_copy_url=1&is_from_webapp=v1',
+  //     websiteUrl: 'https://www.freeriderhd.com/create',
+  //     id: 3
+  // ));
   runApp(const MyApp());
   // Avoid errors caused by flutter upgrade.
 }

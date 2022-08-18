@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:liber/custom_objects/constant_functions.dart';
 import 'package:liber/custom_objects/constants.dart';
 import 'package:liber/custom_objects/interesting_website.dart';
-import 'package:liber/logic/websites.dart';
+import 'package:liber/logic/sql_persistence/database.dart';
 import 'package:liber/widgets/search_delegate.dart';
 
 class ViewWebsiteInfo extends StatefulWidget {
@@ -16,7 +16,7 @@ class ViewWebsiteInfo extends StatefulWidget {
 }
 
 class _ViewWebsiteInfoState extends State<ViewWebsiteInfo> {
-  final Websites websites = Websites();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +40,7 @@ class _ViewWebsiteInfoState extends State<ViewWebsiteInfo> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              //share the website
+              //todo: share the website
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -80,11 +80,11 @@ class _ViewWebsiteInfoState extends State<ViewWebsiteInfo> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     FloatingActionButton(
-                        onPressed: () {
-                          websites.implementDatabase().whenComplete(() async {
-                            await websites.insertWebsite(widget.interestingWebsite);
-                          });
-                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Saved')));
+                        onPressed: () async {
+                            await DatabaseManager.insertWebsite(widget.interestingWebsite).whenComplete(() {
+                              // await websites.insertWebsite(widget.interestingWebsite);
+                              ScaffoldMessenger.of(context).showSnackBar(const  SnackBar(content: Text('Saved')));
+                            });
                         },
                       backgroundColor: Colors.blueGrey,
                       child: const Icon(Icons.save),

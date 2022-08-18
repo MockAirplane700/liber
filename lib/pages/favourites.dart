@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:liber/custom_objects/constants.dart';
 import 'package:liber/custom_objects/interesting_website.dart';
 import 'package:liber/logic/interesting_websites.dart';
-import 'package:liber/logic/websites.dart';
+import 'package:liber/logic/sql_persistence/database.dart';
+
 import 'package:liber/widgets/bottom_navigation_bar.dart';
 import 'package:liber/widgets/custom_navigation_drawer.dart';
 import 'package:liber/widgets/search_delegate.dart';
@@ -18,17 +19,11 @@ class Favourites extends StatefulWidget {
 
 class _FavouritesState extends State<Favourites> {
   // final List<InterestingWebsite> interestingWebsites = InterestingWebsites.fetch();
-  final Websites websites = Websites();
+  List<InterestingWebsite> interestingWebsites = [];
 
   @override
   Widget build(BuildContext context) {
-    List<InterestingWebsite> interestingWebsites = [];
-    websites.implementDatabase();
-    Future<List<InterestingWebsite>> list = websites.websites();
-    //move the list into the list we use later on
-    list.then((value) {
-      interestingWebsites = value.toList();
-    });
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Saved websites', style: TextStyle(color: textColor),),
@@ -49,21 +44,46 @@ class _FavouritesState extends State<Favourites> {
       drawer: const CustomDrawer(),
       body: Center(
         // make a list of cards with list tiles to show the website
-        child: ListView.builder(
-          itemBuilder: (context, index) {
-            return Card(child: ListTile(
-              leading: Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width/80), child: Image.network(interestingWebsites[index].networkImage),),
-              title: Text('Name: ${interestingWebsites[index].name}'),
-              subtitle: Text(interestingWebsites[index].description, overflow: TextOverflow.ellipsis,),
-              trailing: const Icon(Icons.drag_indicator),
-              onTap: () {
-                //go to view website
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> ViewWebsiteInfo(interestingWebsite: interestingWebsites[index])));
-              },
-            ),);
-          },
-          itemCount: interestingWebsites.length,
+        child: FutureBuilder(
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                interestingWebsites = snapshot.data as List<InterestingWebsite>;
+                if (interestingWebsites.isEmpty) {
+                  return const Text('No websites are currently saved');
+                }else{
+                  //core widget display
+                  return ListView.builder(
+                    itemBuilder: (context, index) {
+                      return Card(child: ListTile(
+                        leading: Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width/80), child: Image.network(interestingWebsites[index].networkImage),),
+                        title: Text('Name: ${interestingWebsites[index].name}'),
+                        subtitle: Text(interestingWebsites[index].description, overflow: TextOverflow.ellipsis,),
+                        trailing: IconButton(
+                            onPressed: () async{
+                              await DatabaseManager.deleteWebsite(interestingWebsites[index]).whenComplete(() {
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Website, ${interestingWebsites[index].name.toString()} has been deleted')));
+                              });
+                              setState(() {});
+                            },
+                            icon: const Icon(Icons.delete, color: Colors.red,)
+                        ),
+                        onTap: () {
+                          //go to view website
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> ViewWebsiteInfo(interestingWebsite: interestingWebsites[index])));
+                        },
+                      ),);
+                    },
+                    itemCount: interestingWebsites.length,
+                  );
+                }
+              }else{
+                //no data
+                return const CircularProgressIndicator();
+              }//end if-else
+            },
+          future: DatabaseManager.getWebsites(),
         ),
+
       ),
     );
   }

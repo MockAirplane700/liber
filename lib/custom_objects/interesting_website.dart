@@ -13,7 +13,13 @@ class InterestingWebsite {
     required this.datePublished, required this.source, required this.websiteUrl, required this.id
 });
 
-
+  InterestingWebsite fromJson(json) {
+    return InterestingWebsite(
+        networkImage: json['networkImage'], name:json['name'], description: json['description'],
+        datePublished:json['datePublished'], source: json['source'],
+        websiteUrl: json['websiteUrl'], id: json['id']
+    );
+  }
   //Convert a website into a Map, the keys must correspond with names of the columns in the database
   Map<String,dynamic> toMap() {
     return {
@@ -24,6 +30,18 @@ class InterestingWebsite {
       'networkImage':networkImage,
       'websiteUrl':websiteUrl,
       'source':source
+    };
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name':name,
+      'datePublished' : datePublished,
+      'description':description,
+      'networkImage': networkImage,
+      'websiteUrl':websiteUrl,
+      'source': source,
+      'id':id
     };
   }
 
