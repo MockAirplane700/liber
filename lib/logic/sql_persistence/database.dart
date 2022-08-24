@@ -12,8 +12,8 @@ class DatabaseManager {
       version: 1,
       onCreate: (Database db, int version) async {
         await db.execute(
-          "CREATE TABLE interestingWebsites(id INTEGER PRIMARY KEY, name TEXT, networkImage TEXT,"
-              "description TEXT, datePublished TEXT, source TEXT, websiteUrl TEXT)"
+          "CREATE TABLE interestingWebsites(uid INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, networkImage TEXT,"
+              "description TEXT, datePublished TEXT, source TEXT, websiteUrl TEXT, id TEXT)"
         );
       }
     );
@@ -30,10 +30,12 @@ class DatabaseManager {
     final List<Map<String,dynamic>> maps = await _database.query('interestingWebsites');
 
     return List.generate(maps.length, (index) {
+      // "CREATE TABLE interestingWebsites(uid INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, networkImage TEXT,"
+      //     "description TEXT, datePublished TEXT, source TEXT, websiteUrl TEXT, id TEXT)"
       return InterestingWebsite(
-          networkImage: maps[index]['networkImage'], name: maps[index]['name'],
+          name: maps[index]['name'], networkImage: maps[index]['networkImage'],
           description: maps[index]['description'], datePublished: maps[index]['datePublished'],
-          source: maps[index]['source'], websiteUrl: maps[index]['websiteUrl'], id: maps[index]['id']
+          source: maps[index]['source'], websiteUrl: maps[index]['websiteUrl'], id: maps[index]['id'].toString()
       );
     }).toList();
   }//end get websites

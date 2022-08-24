@@ -39,20 +39,41 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: const BottomNavBar(selectedIndex: 0,),
       body: Center(
         // make a list of cards with list tiles to show the website
-        child: ListView.builder(
-            itemBuilder: (context, index) {
-              return Card(child: ListTile(
-                leading: Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width/80), child: Image.network(interestingWebsites[index].networkImage),),
-                title: Text('Name: ${interestingWebsites[index].name}'),
-                subtitle: Text(interestingWebsites[index].description, overflow: TextOverflow.ellipsis,),
-                trailing: const Icon(Icons.drag_indicator),
-                onTap: () {
-                  //go to view website
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> ViewWebsiteInfo(interestingWebsite: interestingWebsites[index])));
-                },
-              ),);
+        child: FutureBuilder(
+            builder: (context , snapshot) {
+              if (snapshot.hasData)  {
+                List websites = snapshot.data as List<Map<String,dynamic>>;
+                //check for error before viewing
+                if (websites.isEmpty) {
+                  return const Text('No websites are available');
+                }else{
+                  return ListView.builder(
+                    itemBuilder: (context, index) {
+                      InterestingWebsite website = InterestingWebsite(
+                        networkImage: '', name: '', description: '',
+                        datePublished: '', source: '', websiteUrl: '',
+                        id: 0.toString(),
+                      );
+                      InterestingWebsite resultingWebsite =  website.fromJson(websites[index]);
+                      return Card(child: ListTile(
+                        leading: Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width/80), child: Image.network(resultingWebsite.networkImage),),
+                        title: Text('Name: ${resultingWebsite.name}'),
+                        subtitle: Text(resultingWebsite.description, overflow: TextOverflow.ellipsis,),
+                        trailing: const Icon(Icons.drag_indicator),
+                        onTap: () {
+                          //go to view website
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> ViewWebsiteInfo(interestingWebsite: resultingWebsite)));
+                        },
+                      ),);
+                    },
+                    itemCount: websites.length,
+                  );
+                }
+              }else{
+                return const Center(child: CircularProgressIndicator(),);
+              }
             },
-          itemCount: interestingWebsites.length,
+          future: InterestingWebsites.getWebsites(),
         ),
       ),
     );

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:liber/custom_objects/interesting_website.dart';
+import 'package:liber/pages/auth0_login.dart';
 import 'package:liber/pages/home.dart';
 import 'package:flutter/widgets.dart';
+import 'package:liber/pages/login.dart';
+import 'package:liber/persistence/mongo_database.dart';
 
-void main() {
+void main() async{
   // Websites websites = Websites();
   // websites.implementDatabase();
   // websites.insertWebsite(InterestingWebsite(
@@ -13,6 +16,8 @@ void main() {
   //     websiteUrl: 'https://www.freeriderhd.com/create',
   //     id: 3
   // ));
+  WidgetsFlutterBinding.ensureInitialized();
+  await MongoDatabase.connect();
   runApp(const MyApp());
   // Avoid errors caused by flutter upgrade.
 }
@@ -37,7 +42,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const Home(),
+      home:const MyApplication(),
     );
   }
 }

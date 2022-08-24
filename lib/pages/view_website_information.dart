@@ -82,7 +82,6 @@ class _ViewWebsiteInfoState extends State<ViewWebsiteInfo> {
                     FloatingActionButton(
                         onPressed: () async {
                             await DatabaseManager.insertWebsite(widget.interestingWebsite).whenComplete(() {
-                              // await websites.insertWebsite(widget.interestingWebsite);
                               ScaffoldMessenger.of(context).showSnackBar(const  SnackBar(content: Text('Saved')));
                             });
                         },
