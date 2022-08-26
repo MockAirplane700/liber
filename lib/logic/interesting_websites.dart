@@ -44,7 +44,7 @@ class InterestingWebsites {
     ),
   ];
 
-  static List<InterestingWebsite> fetch() {
+  static List<InterestingWebsite> fetch(){
     return interestingWebsites;
   }
 

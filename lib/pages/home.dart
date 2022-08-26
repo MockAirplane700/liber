@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:liber/custom_objects/constant_functions.dart';
 import 'package:liber/custom_objects/constants.dart';
 import 'package:liber/custom_objects/interesting_website.dart';
 import 'package:liber/logic/interesting_websites.dart';
@@ -16,7 +17,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final List<InterestingWebsite> interestingWebsites = InterestingWebsites.fetch();
-
+  List<InterestingWebsite> searchList = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +35,7 @@ class _HomeState extends State<Home> {
           )
         ],
       ),
+      // todo add Drawer( profilePicture: networkStringImage)
       drawer:const CustomDrawer(),
       backgroundColor: applicationBackgroundColor,
       bottomNavigationBar: const BottomNavBar(selectedIndex: 0,),
@@ -55,6 +57,8 @@ class _HomeState extends State<Home> {
                         id: 0.toString(),
                       );
                       InterestingWebsite resultingWebsite =  website.fromJson(websites[index]);
+                      //add the resulting website to the search list
+                      ConstantFunctions.addToList(resultingWebsite);
                       return Card(child: ListTile(
                         leading: Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width/80), child: Image.network(resultingWebsite.networkImage),),
                         title: Text('Name: ${resultingWebsite.name}'),

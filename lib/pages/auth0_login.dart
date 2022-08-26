@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:liber/custom_objects/constant_functions.dart';
+import 'package:liber/pages/home.dart';
 
 const FlutterAppAuth appAuth =  FlutterAppAuth();
 const FlutterSecureStorage flutterSecureStorage = FlutterSecureStorage();
@@ -100,7 +102,10 @@ class _MyApplicationState extends State<MyApplication> {
         isLoggedIn = true;
         name = idToken['name'];
         picture = profile['picture'];
+
       });
+      // add the profile picture to the drawer
+      ConstantFunctions.addNetworkString(picture);
     }catch (ioe) {
       setState(() {
         isBusy = false;
@@ -146,6 +151,7 @@ class _MyApplicationState extends State<MyApplication> {
         name = idToken['name'];
         picture = idToken['picture'];
       });
+      ConstantFunctions.setSignOutAction(logoutAction);
     }catch (ioe) {
       logoutAction();
       throw Exception('Error on refresh token: ${ioe.toString()}');
@@ -161,10 +167,7 @@ class _MyApplicationState extends State<MyApplication> {
     return Scaffold(
       appBar: AppBar(title: const Text('Auth0'),),
       body: Center(
-        child: isBusy ? const CircularProgressIndicator() :isLoggedIn ? Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [Text(name), Image.network(picture), ElevatedButton(onPressed: () {logoutAction();}, child: const Text('Logout'))],
-        ): FutureBuilder(
+        child: isBusy ? const CircularProgressIndicator() :isLoggedIn ? const Home(): FutureBuilder(
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return const Text('logged in yeah baby');

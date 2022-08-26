@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:liber/custom_objects/constant_functions.dart';
 import 'package:liber/custom_objects/interesting_website.dart';
 import 'package:liber/logic/interesting_websites.dart';
 import 'package:liber/pages/view_website_information.dart';
 
 class CustomSearchDelegate extends SearchDelegate{
-  final List<InterestingWebsite> interestingWebsites = InterestingWebsites.fetch();
+  late List interestingWebsites = ConstantFunctions.populateSearchDelegate();
   int indexValue = 0;
 
   @override
@@ -48,7 +49,7 @@ class CustomSearchDelegate extends SearchDelegate{
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<InterestingWebsite> suggestions = interestingWebsites.where((element) {
+    List suggestions = interestingWebsites.where((element) {
       final elementNameComparison = element.name.toLowerCase();
       final input = query.toLowerCase();
       return elementNameComparison.contains(input);

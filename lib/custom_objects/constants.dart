@@ -15,6 +15,16 @@ const Color textColor = Colors.black;
 //icon theme data color
 const Color applicationIconThemeColor = Colors.black;
 
+///========================================================================================
+///             ABOUT THE APP
+/// =======================================================================================
+
+// link to the application website share page
+const String shareCouponsAreUsUrl = 'https://crow-hexahedron-rmrf.squarespace.com/projects/coupons-are-us';
+
+//link to Coupons are us rating page in the app store
+const String rateCouponsAreUsAppleStore = '';
+const String rateCouponsAreUsGooglePlayStore = '';
 ///==========================================================================================
 ///
 ///             ABOUT THE DEVELOPER
