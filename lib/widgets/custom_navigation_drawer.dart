@@ -35,14 +35,14 @@ class _CustomDrawerState extends State<CustomDrawer> {
           const Divider(),
           //Rate the app
           ListTile(
-            title: const Text('Rate coupons are us!'),
+            title: const Text('Rate Liber!'),
             leading: const Icon(Icons.star_rate_rounded),
             onTap: () {
               //go to the relevant page or do the relevant function
               showDialog(
                   context: context, 
                   builder: (BuildContext context) => AlertDialog(
-                    title: const Text('Rate coupons are us'),
+                    title: const Text('Rate Liber'),
                     content: Column(
                       children: [
                         Expanded(child: IconButton(onPressed: () {

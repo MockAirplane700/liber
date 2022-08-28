@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 class ConstantFunctions {
 
   static String profilePictureNetworkString = '';
-  static Function signOutAction = null as Function;
+  static Function ?signOutAction;
   static List interestingWebsites = [];
 
 
@@ -30,6 +30,10 @@ class ConstantFunctions {
   static void signOut() {
     signOutAction;
   }//end sign out
+
+  static void setLogoutAction(Function function) {
+    signOutAction = function;
+  }//end set out log out action
 
   static temp() async {
     // List websites = snapshot.data as List<Map<String,dynamic>>;

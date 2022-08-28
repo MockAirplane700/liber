@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:liber/custom_objects/interesting_website.dart';
+import 'package:liber/logic/favourites_logic.dart';
 import 'package:liber/pages/auth0_login.dart';
 import 'package:liber/pages/home.dart';
 import 'package:flutter/widgets.dart';
@@ -18,6 +19,7 @@ void main() async{
   // ));
   WidgetsFlutterBinding.ensureInitialized();
   await MongoDatabase.connect();
+  FavouritesLogic.initiateFavouritesDatabase();
   runApp(const MyApp());
   // Avoid errors caused by flutter upgrade.
 }
@@ -42,7 +44,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home:const Home(),
+      home:const MyApplication(),
     );
   }
 }

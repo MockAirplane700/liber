@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:liber/custom_objects/constant_functions.dart';
 import 'package:liber/custom_objects/constants.dart';
 import 'package:liber/custom_objects/interesting_website.dart';
+import 'package:liber/logic/favourites_logic.dart';
 import 'package:liber/logic/sql_persistence/database.dart';
 import 'package:liber/widgets/search_delegate.dart';
 
@@ -80,10 +81,9 @@ class _ViewWebsiteInfoState extends State<ViewWebsiteInfo> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     FloatingActionButton(
-                        onPressed: () async {
-                            await DatabaseManager.insertWebsite(widget.interestingWebsite).whenComplete(() {
-                              ScaffoldMessenger.of(context).showSnackBar(const  SnackBar(content: Text('Saved')));
-                            });
+                        onPressed: (){
+                            FavouritesLogic.addToFavourites(widget.interestingWebsite);
+                            ScaffoldMessenger.of(context).showSnackBar(const  SnackBar(content: Text('Saved')));
                         },
                       backgroundColor: Colors.blueGrey,
                       child: const Icon(Icons.save),

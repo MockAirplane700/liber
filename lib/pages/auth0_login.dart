@@ -164,6 +164,8 @@ class _MyApplicationState extends State<MyApplication> {
   }//end init state
   @override
   Widget build(BuildContext context) {
+    ConstantFunctions.setSignOutAction(logoutAction);
+
     return Scaffold(
       appBar: AppBar(title: const Text('Auth0'),),
       body: Center(

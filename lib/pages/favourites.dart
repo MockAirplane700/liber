@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:liber/custom_objects/constants.dart';
 import 'package:liber/custom_objects/interesting_website.dart';
+import 'package:liber/logic/favourites_logic.dart';
 import 'package:liber/logic/interesting_websites.dart';
 import 'package:liber/logic/sql_persistence/database.dart';
 
@@ -23,7 +24,7 @@ class _FavouritesState extends State<Favourites> {
 
   @override
   Widget build(BuildContext context) {
-
+    interestingWebsites = FavouritesLogic.getWebsitesFromFavourites();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Saved websites', style: TextStyle(color: textColor),),
@@ -44,45 +45,28 @@ class _FavouritesState extends State<Favourites> {
       drawer: const CustomDrawer(),
       body: Center(
         // make a list of cards with list tiles to show the website
-        child: FutureBuilder(
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                interestingWebsites = snapshot.data as List<InterestingWebsite>;
-                if (interestingWebsites.isEmpty) {
-                  return const Text('No websites are currently saved');
-                }else{
-                  //core widget display
-                  return ListView.builder(
-                    itemBuilder: (context, index) {
-                      return Card(child: ListTile(
-                        leading: Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width/80), child: Image.network(interestingWebsites[index].networkImage),),
-                        title: Text('Name: ${interestingWebsites[index].name}'),
-                        subtitle: Text(interestingWebsites[index].description, overflow: TextOverflow.ellipsis,),
-                        trailing: IconButton(
-                            onPressed: () async{
-                              await DatabaseManager.deleteWebsite(interestingWebsites[index]).whenComplete(() {
-                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Website, ${interestingWebsites[index].name.toString()} has been deleted')));
-                              });
-                              setState(() {});
-                            },
-                            icon: const Icon(Icons.delete, color: Colors.red,)
-                        ),
-                        onTap: () {
-                          //go to view website
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> ViewWebsiteInfo(interestingWebsite: interestingWebsites[index])));
-                        },
-                      ),);
-                    },
-                    itemCount: interestingWebsites.length,
-                  );
-                }
-              }else{
-                //no data
-                return const CircularProgressIndicator();
-              }//end if-else
-            },
-          future: DatabaseManager.getWebsites(),
-        ),
+        child: interestingWebsites.isNotEmpty ? ListView.builder(
+          itemBuilder: (context, index) {
+            return Card(child: ListTile(
+              leading: Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width/80), child: Image.network(interestingWebsites[index].networkImage),),
+              title: Text('Name: ${interestingWebsites[index].name}'),
+              subtitle: Text(interestingWebsites[index].description, overflow: TextOverflow.ellipsis,),
+              trailing: IconButton(
+                  onPressed: (){
+                    FavouritesLogic.deleteFavouritesEntry(interestingWebsites[index]);
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Website, ${interestingWebsites[index].name.toString()} has been deleted')));
+                    setState(() {});
+                  },
+                  icon: const Icon(Icons.delete, color: Colors.red,)
+              ),
+              onTap: () {
+                //go to view website
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> ViewWebsiteInfo(interestingWebsite: interestingWebsites[index])));
+              },
+            ),);
+          },
+          itemCount: interestingWebsites.length,
+        ) : const Text('There are currently no saved websites'),
 
       ),
     );
