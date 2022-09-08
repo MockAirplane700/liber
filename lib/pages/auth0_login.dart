@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:liber/custom_objects/constant_functions.dart';
+import 'package:liber/custom_objects/constants.dart';
 import 'package:liber/pages/home.dart';
 
 const FlutterAppAuth appAuth =  FlutterAppAuth();
@@ -161,6 +162,22 @@ class _MyApplicationState extends State<MyApplication> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback( (_) async{
+      showDialog(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('PLEASE TAKE NOTE!', style: TextStyle(color: textColor),),
+          content: const Text(logInMessageAuth0, style: TextStyle(color: textColor),),
+          actions: [
+            TextButton(onPressed: () {
+              Navigator.pop(context,'');
+            }, child: const Text('Ok')),
+          ],
+        ),
+        barrierDismissible: true,
+
+      );
+    });
   }//end init state
   @override
   Widget build(BuildContext context) {

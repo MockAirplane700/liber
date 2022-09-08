@@ -1,4 +1,6 @@
+import 'package:liber/custom_objects/constants.dart';
 import 'package:liber/custom_objects/interesting_website.dart';
+import 'package:liber/custom_objects/tiktoker.dart';
 import 'package:liber/logic/interesting_websites.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -19,6 +21,13 @@ class ConstantFunctions {
     profilePictureNetworkString = string;
   }//end network string
 
+  static List<TikToker> getTikTokers() {
+    List<TikToker> tokers = [];
+    for (var value in listOfTikTokAccounts) {
+      tokers.add(TikToker(name: value[0], networkImage: value[1], link: value[3], description: value[2]));
+    }//end list
+    return tokers;
+  }//end get tikTokers
   static String getProfilePicture() {
     return profilePictureNetworkString;
   }//end get profile string
@@ -47,4 +56,8 @@ class ConstantFunctions {
   static void addToList(InterestingWebsite websites) {
     interestingWebsites.add(websites);
   }//end add to list
+
+  static void setToZero() {
+    interestingWebsites.clear();
+  }//end set to zero
 }

@@ -84,6 +84,7 @@ class _ViewWebsiteInfoState extends State<ViewWebsiteInfo> {
                         onPressed: (){
                             FavouritesLogic.addToFavourites(widget.interestingWebsite);
                             ScaffoldMessenger.of(context).showSnackBar(const  SnackBar(content: Text('Saved')));
+                            setState(() {});
                         },
                       backgroundColor: Colors.blueGrey,
                       child: const Icon(Icons.save),

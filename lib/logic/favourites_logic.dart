@@ -19,11 +19,12 @@ class FavouritesLogic {
 
   static List<String> convertToCsv(InterestingWebsite website) {
     // ['id', 'name', 'datePublished', 'description', 'networkImage', 'websiteUrl', 'source'],
-    return [
+    List<String> list = [
       (website.id.toString()), (website.name.toString()), (website.datePublished.toString()),
       (website.description.toString()), (website.networkImage.toString()), (website.websiteUrl.toString()),
       (website.source.toString())
     ];
+    return list;
   }//end convert to csv
 
   static void addToFavourites(InterestingWebsite websiteCsvEntry) {

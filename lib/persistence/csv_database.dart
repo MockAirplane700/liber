@@ -6,16 +6,16 @@ import 'package:path_provider/path_provider.dart';
 
 class CsvManager {
   static String directory = '';
-  static String stringPath = '';
+  static String stringPath = 'csv-savedStores.csv';
 
-  static void setDirectory() async{
+  static setDirectory() async{
     directory = (await getApplicationSupportDirectory()).path;
     stringPath = "$directory/csv-savedStores.csv";
-  }//end set directory
+  }//end set directorys
 
   static void generateCsv() async {
     try {
-      setDirectory();
+     await setDirectory();
       List<List<String>> data = [
         // headers
         ['id', 'name', 'datePublished', 'description', 'networkImage', 'websiteUrl', 'source'],
@@ -43,7 +43,10 @@ class CsvManager {
   static void addInterestingWebsites(List<String> list) async {
     try {
       final File file = File(stringPath);
-      await file.writeAsString(list.toString());
+      String description = list[3];
+      list[3] = description.replaceAll(',', '[comma]');
+      String string = list.toString();
+      await file.writeAsString(string);
     }catch(error) {
       throw Exception(error.toString());
     }//end try-catch
@@ -53,17 +56,23 @@ class CsvManager {
     try{
 
       final file = File(stringPath);
+      sleep(const Duration(seconds: 1));
       final contents = await file.readAsString();
 
       final contentsList = contents.split('\n');
       List<List<String>> websites = [];
 
       for (var value in contentsList) {
-        websites.add(value.split(','));
+        List<String> temp = value.split(',');
+        String description = temp[3];
+        temp[3] = description.replaceAll('[comma]', ',');
+        websites.add(temp);
       }//end for loop
 
       List<InterestingWebsite> interestingWebsites = [];
       for (var element in websites) {
+        String networkImage = element[4].replaceAll(' ', '');
+        element[4] = networkImage;
         interestingWebsites.add(
             InterestingWebsite(
                 networkImage: element[4], name: element[1], description: element[3],

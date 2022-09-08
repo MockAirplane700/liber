@@ -20,11 +20,35 @@ class Favourites extends StatefulWidget {
 
 class _FavouritesState extends State<Favourites> {
   // final List<InterestingWebsite> interestingWebsites = InterestingWebsites.fetch();
-  List<InterestingWebsite> interestingWebsites = [];
+  List<InterestingWebsite> interestingWebsites = FavouritesLogic.getWebsitesFromFavourites();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    //dialog box
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback( (_) async{
+      showDialog(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('PLEASE TAKE NOTE!', style: TextStyle(color: textColor),),
+          content: const Text(favouritesPageStringMessage, style: TextStyle(color: textColor),),
+          actions: [
+            TextButton(onPressed: () {
+              Navigator.pop(context,'');
+            }, child: const Text('Ok')),
+          ],
+        ),
+        barrierDismissible: true,
+
+      );
+    });
+  }//end init state
 
   @override
   Widget build(BuildContext context) {
-    interestingWebsites = FavouritesLogic.getWebsitesFromFavourites();
+
+    setState(() {});
     return Scaffold(
       appBar: AppBar(
         title: const Text('Saved websites', style: TextStyle(color: textColor),),

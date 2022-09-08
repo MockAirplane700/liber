@@ -20,6 +20,8 @@ class _HomeState extends State<Home> {
   List<InterestingWebsite> searchList = [];
   @override
   Widget build(BuildContext context) {
+    // set constant functions list to zero
+    ConstantFunctions.setToZero();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Interesting websites', style: TextStyle(color: textColor),),
