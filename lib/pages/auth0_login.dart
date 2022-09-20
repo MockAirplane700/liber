@@ -46,6 +46,11 @@ class MyApplication extends StatefulWidget {
 
   @override
   State<MyApplication> createState() => _MyApplicationState();
+
+   // Future<InitializationStatus> _initGoogleMobileAds() {
+   //   //todo: initialize google mobile ads
+   //   return MobileAds.instance.initialize();
+   // }//end method
 }
 
 class _MyApplicationState extends State<MyApplication> {
@@ -158,6 +163,8 @@ class _MyApplicationState extends State<MyApplication> {
       throw Exception('Error on refresh token: ${ioe.toString()}');
     }//end try-catch
   }//end init action
+
+
   @override
   void initState() {
     // TODO: implement initState

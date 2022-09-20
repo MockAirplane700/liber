@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:liber/custom_objects/constant_functions.dart';
 import 'package:liber/custom_objects/constants.dart';
 import 'package:liber/custom_objects/interesting_website.dart';
+import 'package:liber/logic/ad_helper.dart';
 import 'package:liber/logic/interesting_websites.dart';
 import 'package:liber/pages/view_website_information.dart';
 import 'package:liber/widgets/bottom_navigation_bar.dart';
@@ -13,11 +14,47 @@ class Home extends StatefulWidget {
 
   @override
   State<Home> createState() => _HomeState();
+
+// Future<InitializationStatus> _initGoogleMobileAds() {
+//   //todo: initialize google mobile ads
+//   return MobileAds.instance.initialize();
+// }//end method
 }
 
 class _HomeState extends State<Home> {
   final List<InterestingWebsite> interestingWebsites = InterestingWebsites.fetch();
   List<InterestingWebsite> searchList = [];
+  //TODO: add _kAdIndex
+  static final _kAdIndex = 4;
+
+  // TODO: add a banner ad instance
+  //  BannerAd ? _ad;
+
+   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    // TODO: Load a banner ad
+    //  BannerAd(
+    //    adUnitId: AdHelper.bannerAdUnitId,
+    //    size: AdSize.banner,
+    //    request: const AdRequest(),
+    //    listener: BannerAdListener(
+    //      onAdLoaded: (ad) {
+    //        setState(() {
+    //          _ad = ad as BannerAd;
+    //        });
+    //      },
+    //      onAdFailedToLoad: (ad, error) {
+    //        // releases an ad resource when it fails to load
+    //        ad.dispose();
+    //        throw Exception('Ad load failed (code=${error.code} message=${error.message}');
+    //      }
+    //    ),
+    //  ).load();
+  }// end init state
+
   @override
   Widget build(BuildContext context) {
     // set constant functions list to zero
@@ -71,6 +108,15 @@ class _HomeState extends State<Home> {
                           Navigator.push(context, MaterialPageRoute(builder: (context)=> ViewWebsiteInfo(interestingWebsite: resultingWebsite)));
                         },
                       ),);
+                      // TODO: Render a banner ad
+                      // if (_ad != null && index == _kAdIndex){
+                      //   return Container(
+                      //     width: _ad!.size.width.toDouble(),
+                      //     height: MediaQuery.of(context).size.height/50,
+                      //   );
+                      // }else{
+                      //
+                      // }//end if-else
                     },
                     itemCount: websites.length,
                   );

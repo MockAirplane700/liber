@@ -20,6 +20,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await MongoDatabase.connect();
   FavouritesLogic.initiateFavouritesDatabase();
+  // MobileAds.instance.initialize();
   runApp(const MyApp());
   // Avoid errors caused by flutter upgrade.
 }

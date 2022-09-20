@@ -37,6 +37,28 @@ const List<List<String>> listOfTikTokAccounts = [
 //link to Liber rating page in the app store
 const String rateLiberAppleStore = '';
 const String rateLiberGooglePlayStore = '';
+
+// Ad mob app id android
+// Ad mob app id ios
+// Ad mob banner add android
+// Ad mob native add android
+// Ad mob banner add ios
+// Ad mob native add android
+
+// Ad mob app id android test
+const String addMobTestAppIdAndroid = 'ca-app-pub-3940256099942544~3347511713';
+// Ad mob app id ios test
+const String addMobTestAppIdIos = 'ca-app-pub-3940256099942544~1458002511';
+// Ad mob banner add android test
+const String addMobTestBannerAndroid = 'ca-app-pub-3940256099942544/6300978111';
+// Ad mob native add android test
+const String addMobTestNativeAndroid = 'ca-app-pub-3940256099942544/2247696110';
+// Ad mob banner add ios test
+const String addMobTestBannerIos = 'ca-app-pub-3940256099942544/2934735716';
+// Ad mob native add android test
+const String addMobTestNativeIos = 'ca-app-pub-3940256099942544/3986624511';
+
+
 ///==========================================================================================
 ///
 ///             ABOUT THE DEVELOPER
