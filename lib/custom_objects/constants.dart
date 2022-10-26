@@ -30,10 +30,12 @@ const String aboutTikTokersMessage = 'This application utilizes the websites men
 // string message list of tik tok accounts on the application
 const List<List<String>> listOfTikTokAccounts = [
   // [Account name, Account networkImage, Account description, Account link]
-  ['Matty McTech', 'https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/c25e1f6b89fdbd41979cbdbc473a5670~c5_100x100.jpeg?x-expires=1662148800&x-signature=cgvxZV5By3mXJSVZAvo6TV8SqDQ%3D', 'PC Enthusiast and Creator Biz: setupspawn@gmail.com', 'https://www.tiktok.com/@setupspawn'],
-  ['Lachief', 'https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tos-alisg-avt-0068/80ed4c494f4665de4fdf46c06ee7ccac.jpeg?x-expires=1662148800&x-signature=5kEdOwSplJySEjphMYAG3tjRtEA%3D', '📩 | lachiefpromo@gmail.com 🤫Secret Info that will change your Life in seconds', 'https://www.tiktok.com/@.lachief'],
-  ['Taher | Websites and Apps', 'https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/f7c9ddee805dee7ea45f5748856e062c~c5_100x100.jpeg?x-expires=1662152400&x-signature=wW0fLuhIklk8xaAiERk51miZDIU%3D', '✅Follow me to know the most useful Websites, Apps & PC Tips! 🚀IG:126K', 'https://www.tiktok.com/@thedigitalkingg']
-];
+  ['Matty McTech',
+    'https://firebasestorage.googleapis.com/v0/b/liber-38804.appspot.com/o/Matty%20tech.jpg?alt=media&token=80729712-4e76-443c-b26a-430336df55b7',
+    'PC Enthusiast and Creator Biz: setupspawn@gmail.com', 'https://www.tiktok.com/@setupspawn'],
+  ['Lachief',
+    'https://firebasestorage.googleapis.com/v0/b/liber-38804.appspot.com/o/Lachief.jpg?alt=media&token=82aaf44c-7b58-4a5a-89e5-bfa9ce28353b',
+    '📩 | lachiefpromo@gmail.com 🤫Secret Info that will change your Life in seconds', 'https://www.tiktok.com/@.lachief']];
 //link to Liber rating page in the app store
 const String rateLiberAppleStore = '';
 const String rateLiberGooglePlayStore = '';
@@ -68,10 +70,10 @@ const String addMobTestNativeIos = 'ca-app-pub-3940256099942544/3986624511';
 // about
 const String aboutDeveloper = 'My name is Mthandazo Edwin Siziba, I am at the time of writing this an undergraduate university student studying computer science with hopes of becoming a software engineer. I have many hobbies and interests, from anime to gaming to fan art, so I tend to dabble a bit here and there, check out my socials and websites to learn more about me!';
 // website
-const String myWebsite = '';
+const String myWebsite = 'https://www.sizibamthandazo.dev';
 // email
-const String email = '';
+const String email = 'sizibamthandazo@yahoo.com';
 // legal disclaimer
-const String legalDisclaimer = '';
+const String legalDisclaimer = 'https://pages.flycricket.io/liber-0/privacy.html';
 //privacy policy
 const String privacyPolicy = 'https://pages.flycricket.io/liber-0/privacy.html';

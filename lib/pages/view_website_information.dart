@@ -5,6 +5,7 @@ import 'package:liber/custom_objects/interesting_website.dart';
 import 'package:liber/logic/favourites_logic.dart';
 import 'package:liber/logic/sql_persistence/database.dart';
 import 'package:liber/widgets/search_delegate.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ViewWebsiteInfo extends StatefulWidget {
 
@@ -48,6 +49,7 @@ class _ViewWebsiteInfoState extends State<ViewWebsiteInfo> {
                   Padding(padding: EdgeInsets.zero, child: IconButton(
                       onPressed: () {
                         //share through a copied link to the clip board
+                        Share.share('Check out Liber! Your one stop shop with all the websites to cure your boredom');
                       },
                       icon: const Icon(Icons.share)
                   ),)

@@ -37,8 +37,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
         padding: EdgeInsets.zero,
         children: [
           DrawerHeader(child: CircleAvatar(
-            backgroundImage:NetworkImage(ConstantFunctions.getProfilePicture()),
             radius: MediaQuery.of(context).size.width/50,
+            backgroundColor: Colors.white,
+            child: Image.network('https://firebasestorage.googleapis.com/v0/b/coupons-are-us.appspot.com/o/Liber%20logo.png?alt=media&token=4965c137-e0da-41cd-b985-3835fa214116'),
           )),
           const Divider(),
           //Share the app
@@ -287,17 +288,17 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           const Divider(),
           //sign out
-          ListTile(
-            title: const Text('Sign out'),
-            leading: const Icon(Icons.logout),
-            onTap: () {
-              //go to the relevant page or do the relevant function
-              ConstantFunctions.signOut();
-              Navigator.pop(context);
-            },
-            trailing: const Icon(Icons.arrow_right_outlined),
-          ),
-          const Divider(),
+          // ListTile(
+          //   title: const Text('Sign out'),
+          //   leading: const Icon(Icons.logout),
+          //   onTap: () {
+          //     //go to the relevant page or do the relevant function
+          //     ConstantFunctions.signOut();
+          //     Navigator.pop(context);
+          //   },
+          //   trailing: const Icon(Icons.arrow_right_outlined),
+          // ),
+          // const Divider(),
         ],
       ),
     );

@@ -6,7 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class ConstantFunctions {
 
-  static String profilePictureNetworkString = '';
+  static String profilePictureNetworkString = 'https://firebasestorage.googleapis.com/v0/b/coupons-are-us.appspot.com/o/Liber%20logo.png?alt=media&token=4965c137-e0da-41cd-b985-3835fa214116';
   static Function ?signOutAction;
   static List interestingWebsites = [];
 
