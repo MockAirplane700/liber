@@ -3,7 +3,6 @@ import 'package:liber/custom_objects/interesting_website.dart';
 import 'package:liber/logic/favourites_logic.dart';
 import 'package:liber/pages/auth0_login.dart';
 import 'package:liber/pages/home.dart';
-import 'package:flutter/widgets.dart';
 import 'package:liber/pages/login.dart';
 import 'package:liber/persistence/mongo_database.dart';
 

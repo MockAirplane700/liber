@@ -7,7 +7,7 @@ class InterestingWebsite {
   final String id;
   final String name;
   final String datePublished;
-  final String description;
+  late final String description;
   final String networkImage;
   final String websiteUrl;
   final String source;
@@ -64,4 +64,8 @@ class InterestingWebsite {
   String toString() {
     return 'Website{id: $id, name: $name}';
   }//end to string
+
+  void addDescription(String string) {
+    description = string;
+  }//add description
 }

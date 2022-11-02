@@ -11,7 +11,7 @@ class CsvManager {
   static setDirectory() async{
     directory = (await getApplicationSupportDirectory()).path;
     stringPath = "$directory/csv-savedStores.csv";
-  }//end set directorys
+  }//end set directory
 
   static void generateCsv() async {
     try {
@@ -43,9 +43,15 @@ class CsvManager {
   static void addInterestingWebsites(List<String> list) async {
     try {
       final File file = File(stringPath);
+      //todo: read csv and store list of current websites then add it back to the file
+      List<InterestingWebsite> websites = readCsv();
+      for(var website in websites) {
+        String description = website.description;
+        website.addDescription(description.replaceAll(',', '[comma]'));
+      }//end for loop
       String description = list[3];
       list[3] = description.replaceAll(',', '[comma]');
-      String string = list.toString();
+      String string = '$list,$websites';
       await file.writeAsString(string);
     }catch(error) {
       throw Exception(error.toString());
