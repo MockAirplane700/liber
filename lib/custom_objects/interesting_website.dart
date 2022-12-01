@@ -4,7 +4,7 @@ import 'package:mongo_dart/mongo_dart.dart';
 
 class InterestingWebsite {
 
-  final String id;
+  final int id;
   final String name;
   final String datePublished;
   late final String description;
@@ -18,45 +18,50 @@ class InterestingWebsite {
     required this.datePublished, required this.source, required this.websiteUrl, required this.id
 });
 
-  // "CREATE TABLE interestingWebsites(uid INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, networkImage TEXT,"
-  // "description TEXT, datePublished TEXT, source TEXT, websiteUrl TEXT, id TEXT)"
+  // "CREATE TABLE websites(websiteId INTEGER PRIMARY KEY autoincrement,"
+  // "name TEXT, datePublished TEXT, networkImage TEXT, description TEXT, websiteUrl TEXT, source TEXT)"
 
   InterestingWebsite fromJson(json) {
     return InterestingWebsite(
-         name:json['name'],networkImage: json['networkImage'], description: json['description'],
-        datePublished:json['datePublished'], source: json['source'],
-        websiteUrl: json['websiteUrl'], id: json['_id'].toHexString()
+      id: json['websiteId'], name:json['name'],
+      datePublished:json['datePublished'],networkImage: json['networkImage'],
+      description: json['description'],
+      websiteUrl: json['websiteUrl'], source: json['source'],
+
     );
   }
   //Convert a website into a Map, the keys must correspond with names of the columns in the database
 
-  // "CREATE TABLE interestingWebsites(uid INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, networkImage TEXT,"
-  // "description TEXT, datePublished TEXT, source TEXT, websiteUrl TEXT, id TEXT)"
+  // "CREATE TABLE websites(websiteId INTEGER PRIMARY KEY autoincrement,"
+  // "name TEXT, datePublished TEXT, networkImage TEXT, description TEXT, websiteUrl TEXT, source TEXT)"
 
   Map<String,dynamic> toMap() {
     return {
+      'websiteId':id,
       'name': name,
+      'datePublished':datePublished,
       'networkImage':networkImage,
       'description':description,
-      'datePublished':datePublished,
-      'source':source,
       'websiteUrl':websiteUrl,
-      'id':id,
+      'source':source,
+
     };
   }
 
-  // "CREATE TABLE interestingWebsites(uid INT PRIMARY KEY autoincrement, name TEXT, networkImage TEXT,"
-  // "description TEXT, datePublished TEXT, source TEXT, websiteUrl TEXT, id TEXT)"
+  // "CREATE TABLE websites(websiteId INTEGER PRIMARY KEY autoincrement,"
+  // "name TEXT, datePublished TEXT, networkImage TEXT, description TEXT, websiteUrl TEXT, source TEXT)"
 
   Map<String, dynamic> toJson() {
     return {
+      'websiteId':id,
       'name':name.toString(),
+      'datePublished' : datePublished.toString(),
       'networkImage': networkImage.toString(),
       'description':description.toString(),
-      'datePublished' : datePublished.toString(),
-      'source': source.toString(),
       'websiteUrl':websiteUrl.toString(),
-      'id':id.toString()
+      'source': source.toString(),
+
+
     };
   }
 

@@ -83,7 +83,7 @@ class CsvManager {
             InterestingWebsite(
                 networkImage: element[4], name: element[1], description: element[3],
                 datePublished: element[2], source: element[6],
-                websiteUrl: element[5], id: element[0]
+                websiteUrl: element[5], id: int.parse(element[0])
             )
         );
       }//end for loop
@@ -112,7 +112,7 @@ class CsvManager {
       List<InterestingWebsite> row = [];
       for (var value1 in websiteList) {
         // ['id', 'name', 'datePublished', 'description', 'networkImage', 'websiteUrl', 'source'],
-        String id = value1.id;
+        int id = value1.id;
         String name = value1.name;
         String datePublished = value1.datePublished;
         String description = value1.description;

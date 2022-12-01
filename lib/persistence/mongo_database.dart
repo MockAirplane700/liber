@@ -5,7 +5,7 @@ class MongoDatabase {
  static Db database = Db('interestingWebsites');
 
   static connect() async {
-    database = await Db.create('mongodb+srv://TestUser:Test%40123@cluster0.vwx6rwi.mongodb.net/interestingWebsites');
+    database = await Db.create('MONGO_API');
     await database.open();
     collection =  database.collection('websites');
   }//end connect

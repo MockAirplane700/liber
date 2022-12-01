@@ -77,13 +77,12 @@ class _HomeState extends State<Home> {
       // todo add Drawer( profilePicture: networkStringImage)
       drawer:const CustomDrawer(),
       backgroundColor: applicationBackgroundColor,
-      bottomNavigationBar: const BottomNavBar(selectedIndex: 0,),
       body: Center(
         // make a list of cards with list tiles to show the website
         child: FutureBuilder(
             builder: (context , snapshot) {
               if (snapshot.hasData)  {
-                List websites = snapshot.data as List<Map<String,dynamic>>;
+                List websites = snapshot.data as List;
                 //check for error before viewing
                 if (websites.isEmpty) {
                   return const Text('No websites are available');
@@ -91,21 +90,22 @@ class _HomeState extends State<Home> {
                   return ListView.builder(
                     itemBuilder: (context, index) {
                       InterestingWebsite website = InterestingWebsite(
-                        networkImage: '', name: '', description: '',
-                        datePublished: '', source: '', websiteUrl: '',
-                        id: 0.toString(),
+                        networkImage: websites[index]['networkImage'], name: websites[index]['name'],
+                        description: websites[index]['description'],
+                        datePublished: websites[index]['datePublished'], source: websites[index]['source'],
+                        websiteUrl: websites[index]['websiteUrl'],
+                        id: websites[index]['_id'].hashCode,
                       );
-                      InterestingWebsite resultingWebsite =  website.fromJson(websites[index]);
                       //add the resulting website to the search list
-                      ConstantFunctions.addToList(resultingWebsite);
+                      ConstantFunctions.addToList(website);
                       return Card(child: ListTile(
-                        leading: Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width/80), child: Image.network(resultingWebsite.networkImage),),
-                        title: Text('Name: ${resultingWebsite.name}'),
-                        subtitle: Text(resultingWebsite.description, overflow: TextOverflow.ellipsis,),
+                        leading: Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width/80), child: Image.network(websites[index]['networkImage']),),
+                        title: Text('Name: ${websites[index]['name']}'),
+                        subtitle: Text(websites[index]['description'], overflow: TextOverflow.ellipsis,),
                         trailing: const Icon(Icons.drag_indicator),
                         onTap: () {
                           //go to view website
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> ViewWebsiteInfo(interestingWebsite: resultingWebsite)));
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> ViewWebsiteInfo(interestingWebsite: website)));
                         },
                       ),);
                       // TODO: Render a banner ad

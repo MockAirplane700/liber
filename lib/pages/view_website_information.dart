@@ -3,7 +3,6 @@ import 'package:liber/custom_objects/constant_functions.dart';
 import 'package:liber/custom_objects/constants.dart';
 import 'package:liber/custom_objects/interesting_website.dart';
 import 'package:liber/logic/favourites_logic.dart';
-import 'package:liber/logic/sql_persistence/database.dart';
 import 'package:liber/widgets/search_delegate.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -84,7 +83,8 @@ class _ViewWebsiteInfoState extends State<ViewWebsiteInfo> {
                   children: [
                     FloatingActionButton(
                         onPressed: (){
-                            FavouritesLogic.addToFavourites(widget.interestingWebsite);
+                            // FavouritesLogic.addToFavourites(widget.interestingWebsite);
+                            FavouritesLogic.addNewWebsiteToFavourite(widget.interestingWebsite);
                             ScaffoldMessenger.of(context).showSnackBar(const  SnackBar(content: Text('Saved')));
                             setState(() {});
                         },

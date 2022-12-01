@@ -25,7 +25,7 @@ class _MongoDemoState extends State<MongoDemo> {
                 InterestingWebsite website = InterestingWebsite(
                     networkImage: '', name: '', description: '',
                     datePublished: '', source: '', websiteUrl: '',
-                    id: 0.toString(),
+                    id: 0,
                 );
                 InterestingWebsite resultingWebsite =  website.fromJson(list[0]);
                 return Text('Data: ${resultingWebsite.toString()}');
