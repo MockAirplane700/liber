@@ -57,6 +57,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     // set constant functions list to zero
     ConstantFunctions.setToZero();
     return Scaffold(
@@ -99,7 +100,8 @@ class _HomeState extends State<Home> {
                       //add the resulting website to the search list
                       ConstantFunctions.addToList(website);
                       return Card(child: ListTile(
-                        leading: Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width/80), child: Image.network(websites[index]['networkImage']),),
+                        leading: Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width/80),
+                          child: SizedBox(width: width/6,child: Image.network(websites[index]['networkImage'], fit: BoxFit.contain,)),),
                         title: Text('Name: ${websites[index]['name']}'),
                         subtitle: Text(websites[index]['description'], overflow: TextOverflow.ellipsis,),
                         trailing: const Icon(Icons.drag_indicator),

@@ -49,6 +49,7 @@ class CustomSearchDelegate extends SearchDelegate{
 
   @override
   Widget buildSuggestions(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     List suggestions = interestingWebsites.where((element) {
       final elementNameComparison = element.name.toLowerCase();
       final input = query.toLowerCase();
@@ -60,9 +61,10 @@ class CustomSearchDelegate extends SearchDelegate{
             return const Center(child: CircularProgressIndicator(),);
           }else{
             return  ListTile(
-              leading: Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width/80), child: Image.network(suggestions[index].networkImage),),
+              leading: Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width/80),
+                child: SizedBox(width: width/12.5,child: Image.network(suggestions[index].networkImage),),),
               title: Text('Name: ${suggestions[index].name}'),
-              subtitle: Text(suggestions[index].description, overflow: TextOverflow.ellipsis,),
+              subtitle: Text(suggestions[index].description, overflow: TextOverflow.ellipsis,maxLines: 1,),
               trailing: const Icon(Icons.drag_indicator),
               onTap: () {
                 //go to view website

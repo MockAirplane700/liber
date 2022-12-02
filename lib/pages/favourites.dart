@@ -44,7 +44,7 @@ class _FavouritesState extends State<Favourites> {
 
   @override
   Widget build(BuildContext context) {
-
+    double width = MediaQuery.of(context).size.width;
     setState(() {});
     return Scaffold(
       appBar: AppBar(
@@ -72,7 +72,8 @@ class _FavouritesState extends State<Favourites> {
                 return list.isNotEmpty ? ListView.builder(
                   itemBuilder: (context, index) {
                     return Card(child: ListTile(
-                      leading: Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width/80), child: Image.network(list[index].networkImage),),
+                      leading: Padding(padding: EdgeInsets.all(MediaQuery.of(context).size.width/80),
+                        child: SizedBox(width: width/6,child: Image.network(list[index].networkImage)),),
                       title: Text('Name: ${list[index].name}'),
                       subtitle: Text(list[index].description, overflow: TextOverflow.ellipsis,),
                       trailing: IconButton(
