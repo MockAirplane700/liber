@@ -48,7 +48,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
             leading: const Icon(Icons.share),
             onTap: () {
               //go to the relevant page or do the relevant function
-              Share.share(shareCouponsAreUsUrl);
+              Share.share(liberLaunchPageUrl);
             },
             trailing: const Icon(Icons.arrow_right_outlined),
           ),

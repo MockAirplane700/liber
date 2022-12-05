@@ -20,7 +20,7 @@ const Color applicationIconThemeColor = Colors.black;
 /// =======================================================================================
 
 // link to the application website share page
-const String shareCouponsAreUsUrl = 'https://crow-hexahedron-rmrf.squarespace.com/projects/coupons-are-us';
+const String liberLaunchPageUrl = 'https://www.sizibamthandazo.dev/liber';
 // string message about viewing the favourites page
 const String favouritesPageStringMessage = 'Please note, if the list of your favourites is not showing, go back to the home page via the bottom navigation bar and try to navigate to favourites again. ';
 // string message about the logging in function of the app

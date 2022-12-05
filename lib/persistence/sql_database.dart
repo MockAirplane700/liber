@@ -19,8 +19,7 @@ class SQLDatabase {
         version: 1,
         onCreate: (Database db, int version) async{
           await db.execute(
-              "CREATE TABLE websites(websiteId INTEGER PRIMARY KEY autoincrement,"
-                  "name TEXT, datePublished TEXT, networkImage TEXT, description TEXT, websiteUrl TEXT, source TEXT) VALUES (NULL , ?, ?, ?, ?, ?, ?) "
+              "CREATE TABLE websites(websiteId INTEGER PRIMARY KEY autoincrement, name TEXT, datePublished TEXT, networkImage TEXT, description TEXT, websiteUrl TEXT, source TEXT) "
           );
         }
     );

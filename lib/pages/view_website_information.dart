@@ -48,7 +48,7 @@ class _ViewWebsiteInfoState extends State<ViewWebsiteInfo> {
                   Padding(padding: EdgeInsets.zero, child: IconButton(
                       onPressed: () {
                         //share through a copied link to the clip board
-                        Share.share('Check out Liber! Your one stop shop with all the websites to cure your boredom');
+                        Share.share('Check out this interesting website, \n${widget.interestingWebsite.name}\nFind other interesting websites from the app Liber get it today! \n$liberLaunchPageUrl');
                       },
                       icon: const Icon(Icons.share)
                   ),)
